@@ -23,6 +23,7 @@ export const Posts = ({ data }: { data: PostsType[] }) => {
   return (
     <>
       {data.map((postData) => {
+        // @ts-ignore
         const post = postData.node;
         const date = new Date(post.date);
         let formattedDate = "";

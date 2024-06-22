@@ -38,7 +38,7 @@ const components: Components<{
     disclaimer?: TinaMarkdownContent;
   };
 }> = {
-  code_block: (props) => <Prism {...props} />,
+  code_block: (props: { value: any, lang?: string, theme?: any }) => <Prism {...props} />,
   BlockQuote: (props: {
     children: TinaMarkdownContent;
     authorName: string;
@@ -106,7 +106,7 @@ const components: Components<{
       </div>
     );
   },
-  img: (props) => (
+  img: (props: { url: string, alt: string }) => (
     <span className="flex items-center justify-center">
       <Image src={props.url} alt={props.alt} width={500} height={500} />
     </span>
@@ -129,7 +129,7 @@ export const Post = (props: PostType) => {
       "from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500",
   };
 
-  const date = new Date(props.date);
+  const date = new Date(props?.date || 0);
   let formattedDate = "";
   if (!isNaN(date.getTime())) {
     formattedDate = format(date, "MMM dd, yyyy");
@@ -160,8 +160,8 @@ export const Post = (props: PostType) => {
                 <Image
                   data-tina-field={tinaField(props.author, "avatar")}
                   className="h-14 w-14 object-cover rounded-full shadow-sm"
-                  src={props.author.avatar}
-                  alt={props.author.name}
+                  src={props.author?.avatar || ''}
+                  alt={props.author?.name || ''}
                   width={500}
                   height={500}
                 />
@@ -170,7 +170,7 @@ export const Post = (props: PostType) => {
                 data-tina-field={tinaField(props.author, "name")}
                 className="text-base font-medium text-gray-600 group-hover:text-gray-800 dark:text-gray-200 dark:group-hover:text-white"
               >
-                {props.author.name}
+                {props.author?.name}
               </p>
               <span className="font-bold text-gray-200 dark:text-gray-500 mx-2">
                 —

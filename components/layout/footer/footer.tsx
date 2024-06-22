@@ -51,7 +51,7 @@ export const Footer = ({ data, icon, rawData }) => {
             className="group mx-2 flex items-center font-bold tracking-tight text-gray-400 dark:text-gray-300 opacity-50 hover:opacity-100 transition duration-150 ease-out whitespace-nowrap"
           >
             <Icon
-              parentColor={data.color}
+              parentColor={data.color!}
               data={{
                 name: icon.name,
                 color: data.color === "primary" ? "primary" : icon.color,
@@ -122,7 +122,7 @@ export const Footer = ({ data, icon, rawData }) => {
               </a>
             )}
           </div>
-          <RawRenderer parentColor={data.color} rawData={rawData} />
+          <RawRenderer parentColor={data.color!} rawData={rawData} />
         </div>
         <div
           className={`absolute h-1 bg-gradient-to-r from-transparent ${

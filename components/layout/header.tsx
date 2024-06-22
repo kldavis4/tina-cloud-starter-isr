@@ -74,11 +74,11 @@ export const Header = ({ data }: { data: GlobalHeader }) => {
             >
               <Icon
                 tinaField={tinaField(data, "icon")}
-                parentColor={data.color}
+                parentColor={data.color!}
                 data={{
-                  name: data.icon.name,
-                  color: data.icon.color,
-                  style: data.icon.style,
+                  name: data.icon?.name || "home",
+                  color: data.icon?.color || "currentColor",
+                  style: data.icon?.style || "solid",
                 }}
               />
               <span data-tina-field={tinaField(data, "name")}>{data.name}</span>
@@ -87,10 +87,11 @@ export const Header = ({ data }: { data: GlobalHeader }) => {
           <ul className="flex gap-6 sm:gap-8 lg:gap-10 tracking-[.002em] -mx-4">
             {data.nav &&
               data.nav.map((item, i) => {
+                if (!item) return null;
                 const activeItem =
-                  (item.href === ""
+                  (item?.href === ""
                     ? router.asPath === "/"
-                    : router.asPath.includes(item.href)) && isClient;
+                    : router.asPath.includes(item?.href || '')) && isClient;
                 return (
                   <li
                     key={`${item.label}-${i}`}

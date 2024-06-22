@@ -10,11 +10,14 @@ export default function HomePage(
 ) {
   const posts = props.data.postConnection.edges;
 
+  if (!posts) {
+    return null;
+  }
   return (
     <Layout>
       <Section className="flex-1">
         <Container size="large" width="small">
-          <Posts data={posts} />
+          <Posts data={posts as any[]} />
         </Container>
       </Section>
     </Layout>
@@ -32,4 +35,4 @@ export const getStaticProps = async () => {
 
 export type PostsType = InferGetStaticPropsType<
   typeof getStaticProps
->["data"]["postConnection"]["edges"][number];
+>["data"]["postConnection"]["edges"][];

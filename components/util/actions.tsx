@@ -64,7 +64,7 @@ export const Actions = ({
     <div className={`flex flex-wrap items-center gap-y-4 gap-x-6 ${className}`}>
       {actions &&
         actions.map(function (action, index) {
-          let element = null;
+          let element: any;
           if (action.type === "button") {
             element = (
               <Link key={index} href={action.link ? action.link : "/"}>

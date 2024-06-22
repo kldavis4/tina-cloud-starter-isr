@@ -23,7 +23,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
   };
 
   return (
-    <Section color={data.color}>
+    <Section color={data.color!}>
       <Container
         size="large"
         className="grid grid-cols-1 md:grid-cols-5 gap-14 items-start justify-center"
@@ -77,8 +77,8 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
                 <Image
                   className="w-full h-auto max-w-full rounded-lg"
                   style={{ objectFit: "cover" }}
-                  alt={data.image.alt}
-                  src={data.image.src}
+                  alt={data.image.alt || ''}
+                  src={data.image.src || ''}
                   width={500}
                   height={500}
                 />
@@ -99,8 +99,8 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
             <div className="mt-10">
               <Actions
                 className="justify-center md:justify-start py-2"
-                parentColor={data.color}
-                actions={data.actions}
+                parentColor={data.color!}
+                actions={data.actions?.map((action) => action ?? {}) || []}
               />
             </div>
           )}

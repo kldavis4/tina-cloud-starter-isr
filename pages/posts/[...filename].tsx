@@ -54,8 +54,8 @@ export const getStaticPaths = async () => {
   const postsListData = await client.queries.postConnection();
 
   return {
-    paths: postsListData.data.postConnection.edges.map((post) => ({
-      params: { filename: post.node._sys.filename.split("/") },
+    paths: postsListData.data.postConnection.edges?.filter(Boolean).map((post) => ({
+      params: { filename: post?.node?._sys?.filename?.split("/") || '' },
     })),
     fallback: "blocking",
   };
